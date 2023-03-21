@@ -1,0 +1,54 @@
+package com.kosa.myapp;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+
+@Controller
+public class TestTemplateController {
+	@GetMapping("/template1")
+	public String template1(Model model, HttpServletRequest req)
+	{
+		model.addAttribute("msg", "스프링부트 템플릿 엔진");
+		model.addAttribute("name", "이서연");
+		model.addAttribute("age", 23);
+		
+		List<String> sList = new ArrayList<String>();
+		sList.add("장미");
+		sList.add("국화");
+		sList.add("매화");
+		sList.add("동백");
+		sList.add("무궁화");
+		sList.add("해바라기");
+		sList.add("프리지아");
+		
+		model.addAttribute("sList", sList);
+		
+		List<BoardDto> boardList = new ArrayList<BoardDto>();
+		boardList.add(new BoardDto("1", "제목1", "내용1", "작성자1", "파일이름1", "이미지1"));
+		boardList.add(new BoardDto("2", "제목2", "내용2", "작성자2", "파일이름2", "이미지2"));
+		boardList.add(new BoardDto("3", "제목3", "내용3", "작성자3", "파일이름3", "이미지3"));
+		boardList.add(new BoardDto("4", "제목4", "내용4", "작성자4", "파일이름4", "이미지4"));
+		boardList.add(new BoardDto("5", "제목5", "내용5", "작성자5", "파일이름5", "이미지5"));
+		
+		model.addAttribute("boardList", boardList);
+		
+		HttpSession session = req.getSession();
+		session.setAttribute("userid", "test1234");
+		session.setAttribute("username", "이서연");
+		
+		return "/template1"; // template1.html로 찾아감
+	}
+	
+	@GetMapping("/board/list")
+	public String board_list(Model model, HttpServletRequest req)
+	{
+		return "/board_list";
+	}
+}

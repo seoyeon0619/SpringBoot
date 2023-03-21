@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>template1</title>
+</head>
+<body>
+<h1>{{msg}}</h1>
+<h1>{{name}}</h1>
+<h1>{{age}}</h1>
+
+<ul>
+	{{#sList}}
+	<li>{{.}}</li>
+	{{/sList}}
+</ul>
+
+<ul>
+	{{#boardList}}
+	<li>{{id}} {{title}} {{writer}} {{contents}}</li>
+	{{/boardList}}
+</ul>
+
+<h1>
+{{#userid}}
+{{username}}님, 안녕하세요!
+{{/userid}}
+{{^userid}}
+로그인하세요!
+{{/userid}}
+</h1>
+
+
+</body>
+</html>
